@@ -1,0 +1,10 @@
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Flask-Login==0.5.0
+Werkzeug==2.0.1
+opencv-python==4.5.3.56
+mediapipe==0.8.9.1
+numpy==1.21.2
+mysqlclient==2.0.3
+PyMySQL==1.0.2
+cryptography==3.4.7

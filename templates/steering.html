@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Virtual Steering{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-11 col-lg-10">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center py-4">
+                <h2 class="mb-0"><i class="fas fa-gamepad me-2"></i>Virtual Steering Control</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="camera-container mb-3">
+                            <img id="camera-feed" src="{{ url_for('video_feed') }}" class="img-fluid rounded shadow" alt="Camera Feed">
+                            <div class="camera-overlay">
+                                <div class="status-indicator">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Camera Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="control-panel">
+                            <h4 class="mb-4"><i class="fas fa-info-circle me-2"></i>Control Guide</h4>
+                            <div class="gesture-cards">
+                                <div class="gesture-card">
+                                    <div class="gesture-icon">👋</div>
+                                    <div class="gesture-info">
+                                        <h5>Stop/Reverse</h5>
+                                        <p>Show one hand to stop or reverse</p>
+                                    </div>
+                                </div>
+                                <div class="gesture-card">
+                                    <div class="gesture-icon">✋</div>
+                                    <div class="gesture-info">
+                                        <h5>Move Forward</h5>
+                                        <p>Show two parallel hands to move forward</p>
+                                    </div>
+                                </div>
+                                <div class="gesture-card">
+                                    <div class="gesture-icon">👈</div>
+                                    <div class="gesture-info">
+                                        <h5>Turn Left</h5>
+                                        <p>Angle hands to the left to turn left</p>
+                                    </div>
+                                </div>
+                                <div class="gesture-card">
+                                    <div class="gesture-icon">👉</div>
+                                    <div class="gesture-info">
+                                        <h5>Turn Right</h5>
+                                        <p>Angle hands to the right to turn right</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-3 mt-4">
+                                <a href="{{ url_for('stop_camera') }}" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-stop-circle me-2"></i>Stop Camera
+                                </a>
+                                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-home me-2"></i>Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.camera-container {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+#camera-feed {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+}
+
+.status-indicator {
+    background: rgba(0,0,0,0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #2ecc71;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-text {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.control-panel {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.gesture-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gesture-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gesture-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gesture-icon {
+    font-size: 2rem;
+    min-width: 3rem;
+    text-align: center;
+}
+
+.gesture-info h5 {
+    margin: 0;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.gesture-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+</style>
+{% endblock %} 
